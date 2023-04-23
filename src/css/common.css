@@ -26,9 +26,11 @@ img {
 .field {
   display: flex;
   flex-direction: column;
+  width: 100px;
 }
 .value {
   font-size: 80px;
+  margin: auto;
 }
 .label {
   margin: auto;
