@@ -3,10 +3,10 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 const inputEl = document.getElementById('datetime-picker');
 const buttonEl = document.querySelector('button[data-start]');
-const daysCounterEl = document.querySelector('span[data-days]');
-const hoursCounterEl = document.querySelector('span[data-hours]');
-const minutesCounterEl = document.querySelector('span[data-minutes]');
-const secondsCounterEl = document.querySelector('span[data-seconds]');
+// const daysCounterEl = document.querySelector('span[data-days]');
+// const hoursCounterEl = document.querySelector('span[data-hours]');
+// const minutesCounterEl = document.querySelector('span[data-minutes]');
+// const secondsCounterEl = document.querySelector('span[data-seconds]');
 buttonEl.disabled = true;
 function addLeadingZero(value) {
   if (value.length <= 2) {

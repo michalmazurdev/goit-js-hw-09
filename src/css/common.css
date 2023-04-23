@@ -11,8 +11,25 @@ body {
   color: #212121;
   line-height: 1.5;
 }
-
+p {
+  display: inline-block;
+}
 img {
   display: block;
   max-width: 100%;
+}
+.timer {
+  display: flex;
+  justify-content: space-between;
+  margin: 60px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.value {
+  font-size: 80px;
+}
+.label {
+  margin: auto;
 }
