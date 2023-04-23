@@ -46,10 +46,18 @@ buttonEl.addEventListener('click', () => {
   let timeLeft = {};
   function updateTimer() {
     timeLeft = convertMs(chosenDate.getTime() - new Date().getTime());
-    daysCounterEl.innerText = addLeadingZero(timeLeft.days);
-    hoursCounterEl.innerText = addLeadingZero(timeLeft.hours);
-    minutesCounterEl.innerText = addLeadingZero(timeLeft.minutes);
-    secondsCounterEl.innerText = addLeadingZero(timeLeft.seconds);
+    document.querySelector('span[data-days]').innerText = addLeadingZero(
+      timeLeft.days.toString()
+    );
+    document.querySelector('span[data-hours]').innerText = addLeadingZero(
+      timeLeft.hours.toString()
+    );
+    document.querySelector('span[data-minutes]').innerText = addLeadingZero(
+      timeLeft.minutes.toString()
+    );
+    document.querySelector('span[data-seconds]').innerText = addLeadingZero(
+      timeLeft.seconds.toString()
+    );
   }
   inputEl.disabled = true;
   updateTimer();
