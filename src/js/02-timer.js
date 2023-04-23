@@ -5,7 +5,7 @@ const buttonEl = document.querySelector('button[data-start]');
 buttonEl.disabled = true;
 function addLeadingZero(value) {
   if (value.length <= 2) {
-    value.padStart(2, '0');
+    return value.padStart(2, '0');
   }
 }
 function convertMs(ms) {
@@ -48,17 +48,18 @@ buttonEl.addEventListener('click', () => {
   let timeLeft = {};
   function updateTimer() {
     timeLeft = convertMs(chosenDate.getTime() - new Date().getTime());
-    document.querySelector('span[data-days]').innerText =
-      timeLeft.days.toString();
-
-    console.log(`${timeLeft.days}`);
-    console.log(typeof `${timeLeft.days}`);
-    console.log('2'.length);
-    console.log('2'.padStart(2, '0'));
-
-    document.querySelector('span[data-hours]').innerText = timeLeft.hours;
-    document.querySelector('span[data-minutes]').innerText = timeLeft.minutes;
-    document.querySelector('span[data-seconds]').innerText = timeLeft.seconds;
+    document.querySelector('span[data-days]').innerText = addLeadingZero(
+      timeLeft.days.toString()
+    );
+    document.querySelector('span[data-hours]').innerText = addLeadingZero(
+      timeLeft.hours.toString()
+    );
+    document.querySelector('span[data-minutes]').innerText = addLeadingZero(
+      timeLeft.minutes.toString()
+    );
+    document.querySelector('span[data-seconds]').innerText = addLeadingZero(
+      timeLeft.seconds.toString()
+    );
   }
   inputEl.disabled = true;
   updateTimer();
