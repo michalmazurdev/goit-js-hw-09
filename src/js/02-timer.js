@@ -3,16 +3,15 @@ import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 const inputEl = document.getElementById('datetime-picker');
 const buttonEl = document.querySelector('button[data-start]');
-// const daysCounterEl = document.querySelector('span[data-days]');
-// const hoursCounterEl = document.querySelector('span[data-hours]');
-// const minutesCounterEl = document.querySelector('span[data-minutes]');
-// const secondsCounterEl = document.querySelector('span[data-seconds]');
+const daysCounterEl = document.querySelector('span[data-days]');
+const hoursCounterEl = document.querySelector('span[data-hours]');
+const minutesCounterEl = document.querySelector('span[data-minutes]');
+const secondsCounterEl = document.querySelector('span[data-seconds]');
 buttonEl.disabled = true;
 function addLeadingZero(value) {
-  if (value.length <= 2) {
-    return value.toString().padStart(2, '0');
-  }
+  return value.toString().padStart(2, '0');
 }
+
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -43,21 +42,15 @@ const options = {
 flatpickr('#datetime-picker', options);
 
 buttonEl.addEventListener('click', () => {
+  let timeLeftInMs;
   let timeLeft = {};
   function updateTimer() {
-    timeLeft = convertMs(chosenDate.getTime() - new Date().getTime());
-    document.querySelector('span[data-days]').innerText = addLeadingZero(
-      timeLeft.days.toString()
-    );
-    document.querySelector('span[data-hours]').innerText = addLeadingZero(
-      timeLeft.hours.toString()
-    );
-    document.querySelector('span[data-minutes]').innerText = addLeadingZero(
-      timeLeft.minutes.toString()
-    );
-    document.querySelector('span[data-seconds]').innerText = addLeadingZero(
-      timeLeft.seconds.toString()
-    );
+    timeLeftInMs = chosenDate.getTime() - new Date().getTime();
+    timeLeft = convertMs(timeLeftInMs);
+    daysCounterEl.innerText = addLeadingZero(timeLeft.days.toString());
+    hoursCounterEl.innerText = addLeadingZero(timeLeft.hours.toString());
+    minutesCounterEl.innerText = addLeadingZero(timeLeft.minutes.toString());
+    secondsCounterEl.innerText = addLeadingZero(timeLeft.seconds.toString());
   }
   inputEl.disabled = true;
   updateTimer();
@@ -65,5 +58,5 @@ buttonEl.addEventListener('click', () => {
   setTimeout(() => {
     clearInterval(intervalId);
     Notiflix.Notify.success('Here we are!');
-  }, chosenDate.getTime() - new Date().getTime());
+  }, timeLeftInMs);
 });
