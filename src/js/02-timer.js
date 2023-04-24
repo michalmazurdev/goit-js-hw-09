@@ -64,5 +64,6 @@ buttonEl.addEventListener('click', () => {
   const intervalId = setInterval(updateTimer, 1000);
   setTimeout(() => {
     clearInterval(intervalId);
+    Notiflix.Notify.success('Here we are!');
   }, chosenDate.getTime() - new Date().getTime());
 });
