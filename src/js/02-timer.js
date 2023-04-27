@@ -47,16 +47,18 @@ buttonEl.addEventListener('click', () => {
   function updateTimer() {
     timeLeftInMs = chosenDate.getTime() - new Date().getTime();
     timeLeft = convertMs(timeLeftInMs);
-    daysCounterEl.innerText = addLeadingZero(timeLeft.days.toString());
-    hoursCounterEl.innerText = addLeadingZero(timeLeft.hours.toString());
-    minutesCounterEl.innerText = addLeadingZero(timeLeft.minutes.toString());
-    secondsCounterEl.innerText = addLeadingZero(timeLeft.seconds.toString());
+
+    if (timeLeftInMs > 0) {
+      daysCounterEl.innerText = addLeadingZero(timeLeft.days.toString());
+      hoursCounterEl.innerText = addLeadingZero(timeLeft.hours.toString());
+      minutesCounterEl.innerText = addLeadingZero(timeLeft.minutes.toString());
+      secondsCounterEl.innerText = addLeadingZero(timeLeft.seconds.toString());
+    } else {
+      clearInterval(intervalId);
+      Notiflix.Notify.success('Here we are!');
+    }
   }
   inputEl.disabled = true;
   updateTimer();
   const intervalId = setInterval(updateTimer, 1000);
-  setTimeout(() => {
-    clearInterval(intervalId);
-    Notiflix.Notify.success('Here we are!');
-  }, timeLeftInMs);
 });

@@ -3,7 +3,6 @@ const formEl = document.querySelector('form');
 const delayInputEl = document.querySelector('input[name=delay]');
 const stepInputEl = document.querySelector('input[name=step]');
 const amountInputEl = document.querySelector('input[name=amount]');
-
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
